@@ -1,0 +1,72 @@
+/* Suisse Intl font faces */
+@font-face {
+  font-family: "Suisse Intl";
+  src: url("https://d2jcw3k6onjdla.cloudfront.net/fonts/suisse/SuisseIntl-Regular-WebM.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Suisse Intl";
+  src: url("https://d2jcw3k6onjdla.cloudfront.net/fonts/suisse/SuisseIntl-SemiBold-WebM.woff2")
+    format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Global reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: rgb(0 0 0 / 0.5);
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f2f1ee;
+  --color-border: rgb(0 0 0 / 0.14);
+  --color-blue: #1878dc;
+  --color-orange: #d35722;
+  --color-green: #328f51;
+  --shadow: 0 0 0.5px 0 rgb(0 0 0 / 0.3), 0 1px 3px 0 rgb(0 0 0 / 0.15);
+}
+
+html {
+  font-size: 18px;
+}
+
+body {
+  font-family: "Suisse Intl", system-ui, sans-serif;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-secondary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--color-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
