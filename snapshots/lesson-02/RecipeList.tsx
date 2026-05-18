@@ -13,10 +13,10 @@ function RecipeList({ recipes, favorites, onToggleFavorite }: Props) {
     <ul className="recipe-list">
       {recipes.map((recipe) => (
         <li key={recipe.id} className="recipe-list__item">
-          <RecipeCard 
-            recipe={recipe} 
-            isFavorited={favorites.has(recipe.id)} 
-            onToggleFavorite={onToggleFavorite} 
+          <RecipeCard
+            recipe={recipe}
+            isFavorited={favorites.has(recipe.id)}
+            onToggleFavorite={onToggleFavorite}
           />
         </li>
       ))}

@@ -4,12 +4,8 @@ import RecipeList from "../RecipeList/RecipeList";
 import "./App.css";
 import { useState } from "react";
 
-
-
-
 function App() {
-
-const [favorites, setFavorites] = useState(new Set<string>());
+  const [favorites, setFavorites] = useState(new Set<string>());
 
   function handleToggleFavorite(id: string) {
     const newSet = new Set(favorites);
@@ -19,8 +15,7 @@ const [favorites, setFavorites] = useState(new Set<string>());
       newSet.add(id);
     }
     setFavorites(newSet);
-  } 
-
+  }
 
   return (
     <div className="app">
@@ -28,7 +23,11 @@ const [favorites, setFavorites] = useState(new Set<string>());
       <main className="app__main">
         <div className="app__container">
           <h1 className="app__heading">Recipes</h1>
-          <RecipeList recipes={recipes} onToggleFavorite={handleToggleFavorite} favorites={favorites}  />
+          <RecipeList
+            recipes={recipes}
+            onToggleFavorite={handleToggleFavorite}
+            favorites={favorites}
+          />
         </div>
       </main>
     </div>

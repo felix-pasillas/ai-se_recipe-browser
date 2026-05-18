@@ -1,6 +1,7 @@
 import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { checkCompiles, checkBuilds, normalize } from "./lib/utils.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
@@ -33,7 +34,23 @@ function assert(condition, message) {
 
 console.log("\nLesson 03: Derived Values\n");
 
-const app = read("src/components/App/App.tsx");
+const compiled = checkCompiles(root);
+if (!compiled.ok) {
+  console.log("❌ TypeScript compilation failed — fix all type errors before running tests\n");
+  console.log(compiled.output);
+  process.exit(1);
+}
+console.log("✅ Project compiles without type errors");
+
+const built = checkBuilds(root);
+if (!built.ok) {
+  console.log("❌ Vite build failed — the app does not run without errors\n");
+  console.log(built.output);
+  process.exit(1);
+}
+console.log("✅ App builds and runs without errors\n");
+
+const app = normalize(read("src/components/App/App.tsx"));
 
 test("App.tsx exists", () => {
   assert(app !== null, "src/components/App/App.tsx not found");

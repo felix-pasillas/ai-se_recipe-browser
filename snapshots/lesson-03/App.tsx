@@ -4,14 +4,12 @@ import RecipeList from "../RecipeList/RecipeList";
 import "./App.css";
 import { useState } from "react";
 
-
-
-
 function App() {
-
-const [favorites, setFavorites] = useState(new Set<string>());
-const [query, setQuery] = useState("");
-const filteredRecipes = recipes.filter((recipe) => recipe.title.toLowerCase().includes(query.toLowerCase()));
+  const [favorites, setFavorites] = useState(new Set<string>());
+  const [query, setQuery] = useState("");
+  const filteredRecipes = recipes.filter((recipe) =>
+    recipe.title.toLowerCase().includes(query.toLowerCase()),
+  );
 
   function handleToggleFavorite(id: string) {
     const newSet = new Set(favorites);
@@ -21,8 +19,7 @@ const filteredRecipes = recipes.filter((recipe) => recipe.title.toLowerCase().in
       newSet.add(id);
     }
     setFavorites(newSet);
-  } 
-
+  }
 
   return (
     <div className="app">
@@ -37,7 +34,11 @@ const filteredRecipes = recipes.filter((recipe) => recipe.title.toLowerCase().in
             onChange={(e) => setQuery(e.target.value)}
             className="app__search"
           />
-          <RecipeList recipes={filteredRecipes} onToggleFavorite={handleToggleFavorite} favorites={favorites}  />
+          <RecipeList
+            recipes={filteredRecipes}
+            onToggleFavorite={handleToggleFavorite}
+            favorites={favorites}
+          />
         </div>
       </main>
     </div>

@@ -6,15 +6,13 @@ import { useState } from "react";
 import { useEffect } from "react";
 import type { Recipe } from "../../types";
 
-
-
-
 function App() {
-
   const [favorites, setFavorites] = useState(new Set<string>());
   const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const filteredRecipes = recipes.filter((recipe) => recipe.title.toLowerCase().includes(query.toLowerCase()));
+  const filteredRecipes = recipes.filter((recipe) =>
+    recipe.title.toLowerCase().includes(query.toLowerCase()),
+  );
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -32,8 +30,7 @@ function App() {
       newSet.add(id);
     }
     setFavorites(newSet);
-  } 
-
+  }
 
   return (
     <div className="app">
@@ -48,7 +45,15 @@ function App() {
             onChange={(e) => setQuery(e.target.value)}
             className="app__search"
           />
-          {isLoading ? <p className="app__loading">Loading recipes...</p> : <RecipeList recipes={filteredRecipes} onToggleFavorite={handleToggleFavorite} favorites={favorites}  />}
+          {isLoading ? (
+            <p className="app__loading">Loading recipes...</p>
+          ) : (
+            <RecipeList
+              recipes={filteredRecipes}
+              onToggleFavorite={handleToggleFavorite}
+              favorites={favorites}
+            />
+          )}
         </div>
       </main>
     </div>

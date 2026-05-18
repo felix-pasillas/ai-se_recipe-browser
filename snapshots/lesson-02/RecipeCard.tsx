@@ -3,7 +3,6 @@ import "./RecipeCard.css";
 import heartIcon from "../../assets/heart.svg";
 import heartFilledIcon from "../../assets/heart-filled.svg";
 
-
 type Props = {
   recipe: Recipe;
   isFavorited: boolean;

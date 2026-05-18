@@ -1,6 +1,7 @@
 import { readFileSync } from "fs";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import { checkCompiles, checkBuilds, checkBehavior, normalize } from "./lib/utils.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
@@ -33,8 +34,24 @@ function assert(condition, message) {
 
 console.log("\nLesson 04: Side Effects with useEffect\n");
 
-const app = read("src/components/App/App.tsx");
-const data = read("src/data/recipes.ts");
+const compiled = checkCompiles(root);
+if (!compiled.ok) {
+  console.log("❌ TypeScript compilation failed — fix all type errors before running tests\n");
+  console.log(compiled.output);
+  process.exit(1);
+}
+console.log("✅ Project compiles without type errors");
+
+const built = checkBuilds(root);
+if (!built.ok) {
+  console.log("❌ Vite build failed — the app does not run without errors\n");
+  console.log(built.output);
+  process.exit(1);
+}
+console.log("✅ App builds and runs without errors\n");
+
+const app = normalize(read("src/components/App/App.tsx"));
+const data = normalize(read("src/data/recipes.ts"));
 
 test("App.tsx exists", () => {
   assert(app !== null, "src/components/App/App.tsx not found");
@@ -97,6 +114,11 @@ test("recipes source data is referenced as allRecipes in App", () => {
     dataFileRenamed || importAliased,
     'App.tsx does not reference the recipe data as "allRecipes" — either rename the export in src/data/recipes.ts, or use `import { recipes as allRecipes }` in App.tsx'
   );
+});
+
+test("Loading indicator appears on mount and disappears after fetch resolves", () => {
+  const result = checkBehavior(root, "tests/lib/lesson-04.behavior.test.tsx");
+  assert(result.ok, "Behavioral tests failed — run `npm test` for details");
 });
 
 console.log(`\n${pass} passed, ${fail} failed`);
