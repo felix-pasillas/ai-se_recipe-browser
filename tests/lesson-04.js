@@ -118,7 +118,7 @@ test("recipes source data is referenced as allRecipes in App", () => {
 
 test("Loading indicator appears on mount and disappears after fetch resolves", () => {
   const result = checkBehavior(root, "tests/lib/lesson-04.behavior.test.tsx");
-  assert(result.ok, "Behavioral tests failed — run `npm test` for details");
+  assert(result.ok, "Behavioral tests failed — run `npm test -- tests/lib/lesson-04.behavior.test.tsx` for details");
 });
 
 console.log(`\n${pass} passed, ${fail} failed`);

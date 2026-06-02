@@ -170,7 +170,7 @@ test("RecipeCard renders a favorite button that calls onToggleFavorite", () => {
 
 test("Clicking the favorite button correctly toggles the recipe in and out of favorites", () => {
   const result = checkBehavior(root, "tests/lib/lesson-02.behavior.test.tsx");
-  assert(result.ok, "Behavioral tests failed — run `npm test` for details");
+  assert(result.ok, "Behavioral tests failed — run `npm test -- tests/lib/lesson-02.behavior.test.tsx` for details");
 });
 
 console.log(`\n${pass} passed, ${fail} failed`);
