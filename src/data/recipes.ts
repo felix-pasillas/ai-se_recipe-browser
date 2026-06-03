@@ -1,4 +1,11 @@
-import type { Recipe } from "../types";
+import type { Recipe, StringMap } from "../types";
+
+export const categoryColors: StringMap = {
+  italian: "#FFC35A",
+  indian: "#FFAB7D",
+  breakfast: "#DAE7FF",
+  french: "#FFD2D7",
+};
 
 export const recipes: Recipe[] = [
   {

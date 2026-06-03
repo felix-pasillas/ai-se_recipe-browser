@@ -6,7 +6,7 @@
 
 .app__main {
   flex: 1;
-  padding: 40px 24px;
+  padding: 48px 24px;
 }
 
 .app__container {
@@ -17,8 +17,31 @@
   gap: 32px;
 }
 
-.app__heading {
-  font-size: 28px;
-  font-weight: 600;
+.app__heading,
+.app__loading {
   color: var(--color-text-primary);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.5;
+  letter-spacing: 0.0703125px;
+}
+
+.app__loading {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.app__search {
+  padding: 19.5px 24px;
+  font-size: 14px;
+  letter-spacing: -0.15px;
+  width: 100%;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.app__search:hover::placeholder {
+  color: #0a0a0a;
 }

@@ -1,3 +1,7 @@
+export type StringMap = {
+  [key: string]: string;
+};
+
 export type Recipe = {
   id: string;
   title: string;
