@@ -6,6 +6,7 @@ import "./App.css";
 
 function App() {
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
+  const [query, setQuery] = useState("");
 
   function handleToggleFavorite(id: string) {
       const newFavorites = new Set(favorites);
@@ -16,16 +17,29 @@ function App() {
       }
       setFavorites(newFavorites);
   }
+
+  const filteredRecipes = recipes.filter((recipe) =>
+    recipe.title.toLowerCase().includes(query.toLowerCase())
+  );
+  
   return (
     <div className="app">
       <Header />
       <main className="app__main">
         <div className="app__container">
           <h1 className="app__heading">Recipes</h1>
-          <RecipeList recipes={recipes} favorites={favorites} onToggleFavorite={handleToggleFavorite} />
-        </div>
+          
+            <input
+              className="app__search"
+              type="search"
+              placeholder="Search recipes..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
+          </div>
+          <RecipeList recipes={filteredRecipes} favorites={favorites} onToggleFavorite={handleToggleFavorite} />
       </main>
-    </div>
+      </div>
   );
 }
 
