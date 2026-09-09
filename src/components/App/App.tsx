@@ -1,12 +1,22 @@
-import { recipes } from "../../data/recipes";
+import { allRecipes } from "../../data/recipes";
 import Header from "../Header/Header";
-import { useState } from "react";
+import { useEffect,useState } from "react";
+import type { Recipe } from "../../types";
 import RecipeList from "../RecipeList/RecipeList";
 import "./App.css";
 
 function App() {
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
+  const [isLoading, setIsLoading] = useState(true);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    setTimeout(() => {
+      setRecipes(allRecipes);
+      setIsLoading(false);
+    }, 500);
+  }, []);
 
   function handleToggleFavorite(id: string) {
       const newFavorites = new Set(favorites);
@@ -37,7 +47,11 @@ function App() {
               onChange={(e) => setQuery(e.target.value)}
             />
           </div>
-          <RecipeList recipes={filteredRecipes} favorites={favorites} onToggleFavorite={handleToggleFavorite} />
+          {isLoading ? (
+            <p className="app__loading">Loading recipes...</p>
+          ) : (
+            <RecipeList recipes={filteredRecipes} favorites={favorites} onToggleFavorite={handleToggleFavorite} />
+          )}
       </main>
       </div>
   );

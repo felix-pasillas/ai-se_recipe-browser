@@ -7,7 +7,7 @@ export const categoryColors: StringMap = {
   french: "#FFD2D7",
 };
 
-export const recipes: Recipe[] = [
+export const allRecipes: Recipe[] = [
   {
     id: "1",
     title: "Spaghetti Carbonara",
