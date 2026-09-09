@@ -23,10 +23,11 @@ function App() {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setRecipes(allRecipes);
       setIsLoading(false);
     }, 500);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   function handleToggleFavorite(id: string) {
