@@ -6,7 +6,18 @@ import RecipeList from "../RecipeList/RecipeList";
 import "./App.css";
 
 function App() {
-  const [favorites, setFavorites] = useState<Set<string>>(new Set());
+  const [favorites, setFavorites] = useState<Set<string>>(() => {
+    const stored = localStorage.getItem("favorites");
+    if (stored) {
+      return new Set<string>(JSON.parse(stored));
+    }
+    return new Set<string>();
+  });
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify([...favorites]));
+  }, [favorites]);
+
   const [isLoading, setIsLoading] = useState(true);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [query, setQuery] = useState("");
